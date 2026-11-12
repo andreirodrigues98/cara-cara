@@ -1,0 +1,29 @@
+QUEM É? — TABULEIRO DE BOLSO
+VERSÃO PRONTA PARA NETLIFY (SEM FIREBASE)
+
+PUBLICAR SEM INSTALAR NADA:
+1. Extraia o arquivo Quem_E_Prontinho_Para_Netlify.zip.
+2. Entre em https://app.netlify.com/drop pelo navegador no computador.
+3. Arraste a PASTA extraída (quem-e-netlify), que contém index.html, para a área de publicação.
+4. Abra o endereço .netlify.app criado pelo Netlify nos celulares.
+
+Não é necessário configurar variáveis, banco de dados, Firebase ou comando de build.
+IMPORTANTE: o Netlify publica o site; não conecta os dois celulares. O jogo foi feito para jogarem presencialmente, perguntando e respondendo em voz alta. Cada celular sorteia um personagem diferente de forma independente (pode haver coincidência entre eles).
+
+COMO JOGAR:
+- Cada pessoa abre o mesmo link no seu próprio celular e seleciona "Um celular para cada".
+- Ao iniciar, o personagem secreto é sorteado.
+- Toque em "Mostrar carta" uma vez: sua carta fica visível até você tocar em "Esconder carta".
+- Toque nos personagens descartados para virá-los. Toque de novo para restaurá-los.
+- É possível desfazer eliminações, fazer um palpite e sortear um novo jogo.
+- Não há pontuação, login ou rastreamento de partidas.
+- No modo de um só celular, a carta secreta é escondida a cada troca de vez.
+
+O histórico e as cartas eliminadas ficam salvos apenas no navegador local, quando o aparelho permite. Para recomeçar, use o botão de novo jogo.
+
+ARQUIVOS:
+index.html — página principal (deve permanecer na raiz da pasta enviada ao Netlify)
+css/style.css — estilos
+js/game.js — sorteio, controles e lógica local
+assets/personagens/ — 24 cartas ilustradas
+sw.js e manifest.webmanifest — suporte a adição à tela inicial e cache para offline

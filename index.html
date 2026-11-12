@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#12274f">
+  <meta name="description" content="Um Cara a Cara de bolso: 24 personagens clássicos, sorteio automático e cartas que viram. Joguem lado a lado, sem conta e sem servidor.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Quem É?">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Quem É? — Tabuleiro de bolso</title>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div id="app" class="app">
+    <header class="site-header">
+      <button class="brand" id="brandHome" type="button" aria-label="Voltar ao início">
+        <span class="brand-symbol" aria-hidden="true">
+          <svg width="29" height="30" viewBox="0 0 29 30" fill="none"><rect x="2" y="2" width="25" height="26" rx="8" fill="#FFD448"/><circle cx="10" cy="12" r="2" fill="#14264B"/><circle cx="19" cy="12" r="2" fill="#14264B"/><path d="M9 19C11.5 22 17.5 22 20 19" stroke="#14264B" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </span>
+        <span>QUEM <em>É?</em></span>
+      </button>
+      <div class="header-side"><span class="header-mini">O CLÁSSICO, DO SEU JEITO</span><button type="button" id="helpBtn" class="header-help"><span aria-hidden="true">?</span> Como jogar</button></div>
+    </header>
+
+    <main>
+      <section id="homeScreen" class="screen home-screen" aria-labelledby="homeTitle">
+        <div class="home-layout">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="pulse-dot"></span> PARA JOGAR LADO A LADO</div>
+            <h1 id="homeTitle">Vinte e quatro rostos.<br><span>Um mistério.</span></h1>
+            <p class="hero-description">O tabuleiro de infância, agora no seu celular. Façam perguntas, virem as cartas e descubram quem é antes do outro.</p>
+            <div class="feature-tags"><span>✦ Personagens clássicos</span><span>✦ Sorteio automático</span><span>✦ Sem cadastro</span></div>
+          </div>
+          <div class="home-preview" aria-hidden="true"><div class="preview-top"><span class="preview-light"></span><span>TABULEIRO N° 01</span><span>24 CARTAS</span></div><div id="previewFaces" class="preview-faces"></div><div class="preview-bottom"><span class="preview-bottom-label">QUEM SERÁ?</span><span class="preview-question">?</span></div></div>
+        </div>
+
+        <section class="setup-panel" aria-labelledby="setupTitle">
+          <div class="section-number">01 <span>—</span> PREPARAR A PARTIDA</div>
+          <h2 id="setupTitle">Como vocês vão jogar?</h2>
+          <div class="mode-options" role="radiogroup" aria-label="Modo de jogo">
+            <button type="button" id="modeTwo" class="mode-option selected" role="radio" aria-checked="true" data-mode="two">
+              <span class="mode-radio" aria-hidden="true"></span><span class="mode-symbol" aria-hidden="true">◫ ◫</span><strong>Um celular para cada</strong><small>Vocês conversam pessoalmente e cada um elimina cartas no próprio tabuleiro.</small><span class="mode-recommend">RECOMENDADO</span>
+            </button>
+            <button type="button" id="modeOne" class="mode-option" role="radio" aria-checked="false" data-mode="one">
+              <span class="mode-radio" aria-hidden="true"></span><span class="mode-symbol" aria-hidden="true">▣</span><strong>Compartilhar um celular</strong><small>O mesmo aparelho passa de mão em mão, com a vez de cada pessoa protegida.</small>
+            </button>
+          </div>
+          <form id="setupForm" novalidate>
+            <div class="form-fields">
+              <label class="field"><span id="nameLabel">SEU NOME</span><input id="nameOne" type="text" maxlength="20" placeholder="Ex.: Você" value="" autocomplete="off"></label>
+              <label class="field"><span>NOME DA OUTRA PESSOA</span><input id="nameTwo" type="text" maxlength="20" placeholder="Ex.: Sua namorada" value="" autocomplete="off"></label>
+            </div>
+            <div id="setupHint" class="setup-hint"><span aria-hidden="true">ⓘ</span> Cada celular faz seu próprio sorteio. Não precisam conectar os aparelhos.</div>
+            <div id="resumeBox" class="resume-box hidden"><span><strong>Você tem uma partida em andamento.</strong><small>Seu tabuleiro está salvo neste aparelho.</small></span><button id="resumeBtn" class="resume-button" type="button">Continuar →</button></div>
+            <button id="startBtn" class="primary-button start-button" type="submit"><span>Sortear e começar</span><span class="button-arrow" aria-hidden="true">↗</span></button>
+          </form>
+        </section>
+        <p class="home-footnote">FEITO PARA DUAS PESSOAS, UMA PERGUNTA DE CADA VEZ. <span>♡</span></p>
+      </section>
+
+      <section id="gameScreen" class="screen game-screen hidden" aria-labelledby="gameTitle">
+        <div class="game-topline"><span class="eyebrow compact"><span class="pulse-dot"></span> PARTIDA EM ANDAMENTO</span><div class="top-actions"><button class="text-button" id="resetBoardBtn" type="button">↺ Reiniciar cartas</button><button class="text-button" id="leaveBtn" type="button">⌂ Início</button></div></div>
+        <div class="game-title-row"><div><div class="section-number">24 PERSONAGENS · 1 MISTÉRIO</div><h1 id="gameTitle">Seu tabuleiro<span class="title-period">.</span></h1><p class="game-caption" id="gameCaption">Pergunte em voz alta. Toque nas cartas para eliminá-las.</p></div></div>
+
+        <div class="game-information">
+          <div class="turn-chip"><span class="turn-chip-icon">✦</span><div><small id="playerTitle">SEU TABULEIRO</small><strong id="currentPlayer">Você</strong></div></div>
+          <div id="secretArea" class="secret-area"><div class="secret-copy"><span class="secret-kicker">MINHA CARTA SORTEADA <span class="lock-icon">◆</span></span><strong id="secretHint">Um segredo só seu</strong><small id="secretDescription">Toque para mostrar sua carta pelo tempo que quiser.</small></div><div id="secretThumbnail" class="secret-thumbnail" aria-hidden="true"><div class="thumbnail-question">?</div><img id="secretImage" alt=""></div><button id="secretHold" type="button" class="secret-hold" aria-pressed="false" aria-label="Mostrar meu personagem secreto">Mostrar carta <span aria-hidden="true">◉</span></button></div>
+        </div>
+
+        <section class="board-case" aria-labelledby="boardHeading">
+          <div class="board-screw screw-a" aria-hidden="true"></div><div class="board-screw screw-b" aria-hidden="true"></div><div class="board-screw screw-c" aria-hidden="true"></div><div class="board-screw screw-d" aria-hidden="true"></div>
+          <div class="board-header"><div><span class="board-micro">PAINEL DE PERSONAGENS</span><h2 id="boardHeading">Quem é quem?</h2></div><div class="remaining-counter"><span id="remainingNumber">24</span><small>AINDA EM PÉ</small></div></div>
+          <div class="board-grid-frame"><div id="boardGrid" class="board-grid" aria-label="Tabuleiro com 24 personagens"></div></div>
+          <div class="board-bottom"><div><span class="mini-hinge" aria-hidden="true"></span><span class="mini-hinge" aria-hidden="true"></span><span class="mini-hinge" aria-hidden="true"></span></div><p>TOQUE PARA VIRAR · TOQUE NOVAMENTE PARA VOLTAR</p><div><span class="mini-hinge" aria-hidden="true"></span><span class="mini-hinge" aria-hidden="true"></span><span class="mini-hinge" aria-hidden="true"></span></div></div>
+        </section>
+        <div class="game-bottom"><div class="bottom-tools"><button type="button" id="undoBtn" class="ghost-button">↶ Desfazer última</button><span id="eliminatedLabel">0 de 24 cartas eliminadas</span></div><div class="action-buttons"><button type="button" id="guessBtn" class="action-guess">◎ Dar meu palpite</button><button type="button" id="nextTurnBtn" class="action-turn">Passar a vez <span>→</span></button></div></div>
+      </section>
+
+      <section id="resultsScreen" class="screen results-screen hidden"><div class="result-wrap"><div class="result-emblem" id="resultEmblem">✦</div><div class="eyebrow">FIM DA PARTIDA</div><h1 id="resultHeading">Temos um vencedor!</h1><p id="resultSubheading" class="result-description"></p><div id="resultCards" class="result-cards"></div><div class="result-actions"><button type="button" id="rematchBtn" class="primary-button">Sortear novo jogo <span>↗</span></button><button type="button" id="finishBtn" class="ghost-button">Voltar ao início</button></div></div></section>
+    </main>
+
+    <footer class="site-footer"><span>QUEM É? / TABULEIRO DE BOLSO</span><span>NENHUM DADO É ENVIADO À INTERNET</span></footer>
+  </div>
+
+  <div id="handoff" class="handoff hidden" role="dialog" aria-modal="true" aria-labelledby="handoffTitle"><div class="handoff-panel"><div class="handoff-art" aria-hidden="true"><div class="handoff-lock">✦</div><span>?</span></div><div class="eyebrow">HORA DE TROCAR</div><h2 id="handoffTitle">Passe o celular para <span id="handoffName">Jogador 2</span>.</h2><p>O tabuleiro anterior está escondido. A próxima pessoa pode abrir o dela sem espiar o segredo da outra.</p><button type="button" id="handoffReady" class="primary-button">Estou com o celular <span>→</span></button></div></div>
+
+  <dialog id="helpDialog" class="game-dialog help-dialog"><div class="dialog-header"><div class="section-number">GUIA RÁPIDO</div><button class="dialog-close" type="button" data-close aria-label="Fechar">×</button></div><h2>Como jogar?</h2><ol class="rules-list"><li><b>O sorteio é automático.</b> Cada pessoa recebe um personagem secreto. Toque em <strong>Mostrar carta</strong> para deixá-la visível enquanto joga; toque em <strong>Esconder carta</strong> para ocultá-la de novo.</li><li><b>Façam uma pergunta por vez.</b> Perguntem em voz alta algo que possa ser respondido com <strong>sim</strong> ou <strong>não</strong>.</li><li><b>Virem as cartas.</b> Toquem nos personagens descartados. Se eliminar alguém por engano, toquem novamente ou usem “Desfazer”.</li><li><b>Arrisquem um palpite.</b> No seu turno, diga o nome que acha que é o personagem do outro. Acertou, ganhou; errou, perdeu a rodada.</li></ol><p class="rules-note"><strong>Dois celulares:</strong> vocês jogam verbalmente, cada um no seu aparelho, sem conexão entre os tabuleiros. <strong>Um celular:</strong> usem “Passar a vez” para alternar, mantendo os segredos escondidos.</p><button class="primary-button dialog-confirm" type="button" data-close>Entendi, vamos jogar <span>→</span></button></dialog>
+
+  <dialog id="guessDialog" class="game-dialog guess-dialog"><div class="dialog-header"><div class="section-number">MOMENTO DA VERDADE</div><button class="dialog-close" type="button" data-close aria-label="Fechar">×</button></div><h2>Qual é o seu palpite?</h2><p class="dialog-description">Escolha o personagem que você acredita ser o segredo da outra pessoa.</p><div id="guessGrid" class="guess-grid"></div><div id="guessSelection" class="guess-selection">Selecione uma carta para continuar.</div><button type="button" id="confirmGuessBtn" disabled class="primary-button dialog-confirm">Confirmar palpite <span>→</span></button></dialog>
+
+  <dialog id="verifyDialog" class="game-dialog verify-dialog"><div class="dialog-header"><div class="section-number">CONFIRA COM A OUTRA PESSOA</div><button class="dialog-close" type="button" data-close aria-label="Fechar">×</button></div><div id="verifyFace" class="verify-face"></div><h2 id="verifyTitle">Você acertou?</h2><p>Como os celulares não estão conectados, confirme com a outra pessoa se seu palpite estava certo.</p><div class="verify-actions"><button type="button" id="verifyWrong" class="ghost-button">Não, errei</button><button type="button" id="verifyRight" class="primary-button">Sim, acertei ✓</button></div></dialog>
+
+  <dialog id="confirmDialog" class="game-dialog confirm-dialog"><div class="dialog-header"><div class="section-number">CONFIRMAR AÇÃO</div><button class="dialog-close" type="button" data-close aria-label="Fechar">×</button></div><h2 id="confirmTitle">Tem certeza?</h2><p id="confirmText" class="dialog-description"></p><div class="verify-actions"><button type="button" id="confirmCancel" class="ghost-button">Cancelar</button><button type="button" id="confirmProceed" class="primary-button">Confirmar</button></div></dialog>
+
+  <script src="js/game.js" defer></script>
+</body>
+</html>
